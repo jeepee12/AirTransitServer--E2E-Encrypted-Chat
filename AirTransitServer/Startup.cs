@@ -20,9 +20,8 @@ namespace AirTransitServer
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // todo check for Entity Framework ...
-            services.AddDbContext<RegistryContext>(opt => opt.UseInMemoryDatabase("MyDB"));
-            //services.AddDbContext<RegistryContext>(opt => opt.UseSqlite("MyDB"));
+            services.AddDbContext<RegistryContext>(opt => opt.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<MessageContext>(opt => opt.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
             services.AddMvc();
 
             // Register the Swagger generator, defining one or more Swagger documents

@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AirTransitServer.Models;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
-using AirTransitServer.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -84,13 +84,13 @@ namespace AirTransitServer.Controllers
         [HttpDelete("{phoneNumber}")]
         public IActionResult Delete(string phoneNumber)
         {
-            var todo = _ctx.Registries.FirstOrDefault(t => t.PhoneNumber == phoneNumber);
-            if (todo == null)
+            var registry = _ctx.Registries.FirstOrDefault(t => t.PhoneNumber == phoneNumber);
+            if (registry == null)
             {
                 return NotFound();
             }
 
-            _ctx.Registries.Remove(todo);
+            _ctx.Registries.Remove(registry);
             _ctx.SaveChanges();
             return new NoContentResult();
         }
