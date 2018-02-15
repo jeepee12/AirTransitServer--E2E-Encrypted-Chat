@@ -1,11 +1,7 @@
-﻿using System;
-using AirTransitServer.Models;
+﻿using AirTransitServer.Models;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
+using System;
 using System.Linq;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace AirTransitServer.Controllers
 {
@@ -17,23 +13,16 @@ namespace AirTransitServer.Controllers
         public MessageController(MessageContext context)
         {
             _ctx = context;
-
-            // todo delete this
-            if (!_ctx.Messages.Any())
-            {
-                _ctx.Messages.Add(new Message { PhoneNumber = "12345", Content = "Encrypted Stuff"});
-                _ctx.SaveChanges();
-            }
         }
 
-        // GET api/<controller>/5
+        // GET api/<controller>/<senderPhoneNumber>
+        // A signature must be specified in the body to confirm the identify of the sender.
         [HttpGet("{senderPhoneNumber}")]
         public IActionResult Get(string senderPhoneNumber, string authSignature)
         {
             if(CheckSignature(senderPhoneNumber, authSignature))
                 return Ok(_ctx.Messages.Where(m => m.PhoneNumber == senderPhoneNumber));
             return NotFound();
-            //return Enumerable.Empty<Message>();
         }
 
         // POST api/<controller>
@@ -41,9 +30,7 @@ namespace AirTransitServer.Controllers
         public IActionResult Post([FromBody]Message message)
         {
             if (message == null)
-            {
                 return BadRequest();
-            }
 
             _ctx.Messages.Add(message);
             _ctx.SaveChanges();
@@ -51,7 +38,7 @@ namespace AirTransitServer.Controllers
             return Ok(message);
         }
 
-        // DELETE api/<controller>/5
+        // DELETE api/<controller>/<messageId>
         [HttpDelete("{messageId}")]
         public IActionResult Delete(Guid messageId, string authSignature)
         {
@@ -67,7 +54,7 @@ namespace AirTransitServer.Controllers
                 return NoContent();
             }
 
-            return NotFound();
+            return Forbid();
         }
 
         private bool CheckSignature(string phoneNumber, string signature)
