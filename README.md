@@ -1,5 +1,11 @@
 # AirTransitAPI--E2E-Encrypted-Chat
 End-to-End Encrypted Chat API, university project.
+When running, the app can be accessible to `http://*:5000`.
+
+For Example :  
+Locally  : `http://localhost:5000`  
+Same LAN : `http://192.168.0.2:5000`  
+Remotely  : `http://MyDNS:5000`  
 
 ## How to run the app locally (with Visual Studio)
 * Open the solution (.sln) with Visual Studio
