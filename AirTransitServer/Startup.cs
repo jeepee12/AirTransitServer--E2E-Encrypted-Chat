@@ -1,6 +1,7 @@
 ﻿using AirTransitServer.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Rewrite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -47,6 +48,11 @@ namespace AirTransitServer
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
+
+            // Redirect root to /swagger
+            // i.e. http://localhost:5000 -> http://localhost:5000/swagger
+            var options = new RewriteOptions().AddRedirect("^$", "swagger");
+            app.UseRewriter(options);
 
             app.UseMvc();
         }
