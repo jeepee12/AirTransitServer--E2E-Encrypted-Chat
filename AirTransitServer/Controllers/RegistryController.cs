@@ -51,7 +51,7 @@ namespace AirTransitServer.Controllers
         [HttpPut("{phoneNumber}")]
         public IActionResult Update(string phoneNumber, [FromBody] Registry registry)
         {
-            if (registry == null || registry.PublicKey != phoneNumber)
+            if (registry == null || registry.PhoneNumber != phoneNumber)
                 return BadRequest();
 
             var reg = _ctx.Registries.FirstOrDefault(t => t.PhoneNumber == phoneNumber);
@@ -64,7 +64,7 @@ namespace AirTransitServer.Controllers
             _ctx.Registries.Update(reg);
             _ctx.SaveChanges();
 
-            return new NoContentResult();
+            return new ObjectResult(reg);
         }
 
         // DELETE api/<controller>/<phoneNumber>
