@@ -1,5 +1,5 @@
 # AirTransitAPI--E2E-Encrypted-Chat
-End-to-End Encrypted Chat API, university project.  
+An End-to-End Encrypted Chat API for a university project.  
 When running, the app can be accessible to `http://*:5000`.
 
 Ex. :  
@@ -32,7 +32,7 @@ Finally, to run the application go to the output publish folder with a command p
 
 Every time a model is modified, a migration should be created to apply new changes to the database.
 
-Here is a summary list of command that can be used for migrations : 
+Here is a summary list of commands that can be used for migrations : 
 
 PowerShell or Package Manager Console | Command Prompt | Additional Information
 ------------------------------------- | -------------- | ----------------------
@@ -43,7 +43,7 @@ Drop-Database | dotnet ef database drop
 [Complete documentation](https://docs.microsoft.com/en-us/ef/core/miscellaneous/cli/powershell) | [Complete documentation](https://docs.microsoft.com/en-us/ef/core/miscellaneous/cli/dotnet)
 
 ## Technology Stack
-* .NET Core 2.0 SDK
-* Web API with ASP.NET Core using [this tutorial](https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-web-api)
+* .NET Core 2.0 SDK ([download](https://www.microsoft.com/net/download))
+* Web API with [ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/) using [this tutorial](https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-web-api)
 * [Swagger](https://swagger.io/)
-* Entity Framework Core with [SQLite](https://www.sqlite.org/index.html)
+* [Entity Framework Core](https://docs.microsoft.com/en-us/ef/core/) with [SQLite](https://www.sqlite.org/index.html)
